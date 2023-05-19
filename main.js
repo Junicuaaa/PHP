@@ -1,14 +1,15 @@
-let form = document.querySelector("#myForm");
-form.addEventListener("submit", async(e)=>{
-    e.preventDefault()
-    let headers = new Headers({"Content-Type": "application/json"})
-    let data = Object.fromEntries(new FormData(e.target))
-    let config = {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(data)
-    };
-    let request = await fetch("api.php", config);
-    let response = await request.text();
-    document.querySelector("pre").innerHTML = response;
+let myFormulario = document.querySelector("#myFormulario");
+let myHeaders = new Headers({"Content-Type": "application/json"});
+let config = {
+    headers: myHeaders, 
+};
+myFormulario.addEventListener("submit", async(e)=>{
+    e.preventDefault();
+    config.method = "POST";
+    let data = Object.fromEntries(new FormData(e.target));
+    config.body = JSON.stringify(data);
+    console.log(data);
+    let res = await (await fetch("api.php", config)).text();
+    document.querySelector("pre").innerHTML = res;
+    console.log(res);
 })
