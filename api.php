@@ -54,10 +54,16 @@
     // Construir el algoritmo para determinar el voltaje de un
     // circuito a partir de la resistencia y la intensidad de corriente.   
             
-            function validacion($resistencia, $corriente){
-                $voltaje = $resistencia * $corriente;
-                return $voltaje;
-            }
 
-    echo (validacion(...$_DATA));
+class voltaje{
+    public $voltaje;
+    public function __construct($resistencia, $corriente){
+        $this->voltaje = $resistencia * $corriente;
+    }
+    public function getVoltaje(){
+        return $this->voltaje;
+    }
+}
+$obj = new voltaje(...$_DATA);
+    echo ($obj->getVoltaje());
 ?>
